@@ -11,7 +11,7 @@ public class LowNet : Enemy
     public override void _Ready()
     {
         base._Ready();
-        distanceProportion = GetDistanceProportionToPlayer();
+        if(IsInstanceValid(entityToFollow)) distanceProportion = GetDistanceProportionToPlayer();
         GetNode<Timer>(followTimerPath).Start();
     }
 
