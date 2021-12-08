@@ -1,0 +1,19 @@
+CI    	DI    	SI	
+#			Elvio	Resistor (Ataque Básico. Resistor com animação de queima. Nasce tossindo, morre com raiozinho)
+#     			Rui	Vetor de Froça (Raycaster. Caster com vetorzinho angulado. Nasce @, cast com 'BOLSONARO')
+     			Larte	Dualidade Boleana (Surge dois em posições diametralmente opostas, o vermelho faz @, o azul @. @. @)
+     			Hevans	Explosão de Calculo (@Lançamento em area. @. @)
+     			Flavio	System.Delete();/@ (Ataque absurdo/Uma Gui de três linhas de codigo [De um total de seis] em que o player passa de linha em linha clicando, e executa o código segurando)
+			Rodrigo	@@@
+
+CI) Code Implementation
+DI) Desing Implementation
+SI) Sound Implementation
+
+
+
+inimigo que anda em direções aleatórias. Medo de desmutarKKKKKKKKK
+
+cinco mundos, em que em cada um  deles apresenta uma nova invocação e um novo inimigo [Sendo tais mundos,
+os nomes das matérias com seu cenário e soundtrack respectivo!]
+mano, rogrigo boss ou invocação

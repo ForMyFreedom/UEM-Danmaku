@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/scenes/GameScenes/GameMinorScenes/AbstractCounter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/codes/CombatCodes/TimerCounter.cs" type="Script" id=2]
+
+[node name="TimerCounter" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Label" parent="." index="1"]
+text = "Tempo: "
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 30.0
+one_shot = true
+autostart = true

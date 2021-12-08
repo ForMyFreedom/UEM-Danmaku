@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fuse_crack.mp3-39e995bc1206321799ba41d03ef9f2f0.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/fuse_crack.mp3"
+dest_files=[ "res://.import/fuse_crack.mp3-39e995bc1206321799ba41d03ef9f2f0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

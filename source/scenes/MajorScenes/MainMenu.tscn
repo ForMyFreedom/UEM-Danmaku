@@ -1,0 +1,149 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/Amiri-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/textures/main_menu_texture.png" type="Texture" id=4]
+[ext_resource path="res://assets/musics/Theme.wav" type="AudioStream" id=5]
+[ext_resource path="res://source/codes/MainMenu.cs" type="Script" id=6]
+[ext_resource path="res://source/codes/AudioCodes/ContinuosAudioPlayer.cs" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 90
+outline_size = 4
+outline_color = Color( 0.792157, 0.0313726, 0.0313726, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 2
+outline_color = Color( 0.811765, 0.0980392, 0.25098, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 2
+outline_color = Color( 1, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+StartGameButtonPath = NodePath("Control/VboxMaster/VBox-2/HBox-2-1/VBox-2-1-1/StartGameButton")
+DeturpationButtonPath = NodePath("Control/VboxMaster/VBox-2/HBox-2-1/VBox-2-1-2/DeturpationButton")
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VboxMaster" type="VBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox-1" type="VBoxContainer" parent="Control/VboxMaster"]
+margin_right = 1120.0
+margin_bottom = 283.0
+rect_pivot_offset = Vector2( -261.401, -40.557 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GameNameLabel" type="Label" parent="Control/VboxMaster/VBox-1"]
+margin_right = 1120.0
+margin_bottom = 283.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "A Jornada do Burro!"
+align = 1
+valign = 1
+
+[node name="VBox-2" type="VBoxContainer" parent="Control/VboxMaster"]
+margin_top = 287.0
+margin_right = 1120.0
+margin_bottom = 570.0
+rect_pivot_offset = Vector2( -261.401, -40.557 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox-2-1" type="HBoxContainer" parent="Control/VboxMaster/VBox-2"]
+margin_right = 1120.0
+margin_bottom = 283.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBox-2-1-1" type="VBoxContainer" parent="Control/VboxMaster/VBox-2/HBox-2-1"]
+margin_right = 558.0
+margin_bottom = 283.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StartGameButton" type="Button" parent="Control/VboxMaster/VBox-2/HBox-2-1/VBox-2-1-1"]
+margin_left = 167.0
+margin_top = 88.0
+margin_right = 391.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 224, 107 )
+focus_next = NodePath("../../VBox-2-1-2/DeturpationButton")
+focus_previous = NodePath("../../VBox-2-1-2/DeturpationButton")
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Jogar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox-2-1-2" type="VBoxContainer" parent="Control/VboxMaster/VBox-2/HBox-2-1"]
+margin_left = 562.0
+margin_right = 1120.0
+margin_bottom = 283.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="DeturpationButton" type="Button" parent="Control/VboxMaster/VBox-2/HBox-2-1/VBox-2-1-2"]
+margin_left = 167.0
+margin_top = 88.0
+margin_right = 391.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 224, 107 )
+focus_next = NodePath("../../VBox-2-1-1/StartGameButton")
+focus_previous = NodePath("../../VBox-2-1-1/StartGameButton")
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "كما أرسل الله"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+script = ExtResource( 7 )

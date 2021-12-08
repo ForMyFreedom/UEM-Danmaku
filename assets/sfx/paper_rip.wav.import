@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/paper_rip.wav-d860eed6e46f9173b35e310bb2b79032.sample"
+
+[deps]
+
+source_file="res://assets/sfx/paper_rip.wav"
+dest_files=[ "res://.import/paper_rip.wav-d860eed6e46f9173b35e310bb2b79032.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

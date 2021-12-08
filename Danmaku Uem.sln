@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Danmaku Uem", "Danmaku Uem.csproj", "{2AC46A38-8864-42D7-8D1A-498A8AA738CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{2AC46A38-8864-42D7-8D1A-498A8AA738CA}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

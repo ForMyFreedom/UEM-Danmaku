@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FragileDoor.mp3-1fbaffb574dfc6512b29d4ed79291d16.mp3str"
+
+[deps]
+
+source_file="res://assets/musics/FragileDoor.mp3"
+dest_files=[ "res://.import/FragileDoor.mp3-1fbaffb574dfc6512b29d4ed79291d16.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
