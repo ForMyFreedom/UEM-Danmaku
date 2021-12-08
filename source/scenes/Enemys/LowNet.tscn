@@ -1,17 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://source/scenes/Enemys/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/enemy/low_net.png" type="Texture" id=2]
 [ext_resource path="res://assets/sfx/dial/dial_sfx1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sfx/dial/dial_sfx2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sfx/dial/dial_sfx3.wav" type="AudioStream" id=5]
+[ext_resource path="res://source/codes/EnemysCode/LowNet.cs" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 26.3048
 
 [node name="LowNet" instance=ExtResource( 1 )]
-position = Vector2( 483.293, 299.085 )
-velocity = 2.7
+position = Vector2( 481.293, 301.085 )
+script = ExtResource( 6 )
+velocity = 3.5
+followTimerPath = NodePath("FollowTimer")
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0.130859, -0.102295 )
@@ -24,3 +27,6 @@ shape = SubResource( 1 )
 [node name="DeathAudioPlayer" parent="." index="5"]
 audioStreamList = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 audioNameList = PoolStringArray( "1", "2", "3" )
+
+[node name="FollowTimer" type="Timer" parent="." index="6"]
+one_shot = true

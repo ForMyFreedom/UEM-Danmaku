@@ -30,24 +30,35 @@ public class Enemy : Node2D
 
 
 
-    private void FollowTheEntity()
+    protected virtual void FollowTheEntity()
+    {
+        MoveEntity(GetDistanceProportionToPlayer());
+    }
+
+    
+    
+    protected Vector2 GetDistanceProportionToPlayer()
     {
         Vector2 entityPos = entityToFollow.GlobalPosition;
         Vector2 myPos = GlobalPosition;
-        Vector2 distance = (entityPos - myPos).Normalized();
-
-        Position += distance * velocity;
+        return (entityPos - myPos).Normalized();
     }
 
 
-    private void RunRandomly()
+    protected void MoveEntity(Vector2 distanceProportion)
+    {
+        Position += distanceProportion * velocity;
+    }
+
+
+    protected void RunRandomly()
     {
         Position += GetRandomDistance() * velocity;
     }
 
 
 
-    private Vector2 GetRandomDistance()
+    protected Vector2 GetRandomDistance()
     {
         float xMove = (float) (random.Next(-1000, 1000)/1000.0);
         float yMove = (random.Next(0,2)==1) ? (1 - xMove) : (xMove-1);
