@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Game : Control
+public class Game : Control		//@
 {
 	[Export]
 	private float REDUCTION_TIME_PER_ENEMY;
@@ -180,7 +180,12 @@ public class Game : Control
 
 	private bool isWinCondition()
     {
-		return false;//@
+		return false;		//@
     }
+
+	public int GetQuantOfPointToWin()
+    {
+		return 30;			//@
+	}
 
 }

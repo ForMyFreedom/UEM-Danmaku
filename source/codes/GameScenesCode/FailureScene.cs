@@ -7,7 +7,7 @@ public class FailureScene : MyControl
     {
         if (Input.IsActionJustReleased("Enter"))
         {
-            GetParent().GetParent<AllGame>().ReturnToMainMenu();
+            GetParent().GetParent<AllGame>().ReturnToMainMenu();        //@
             EmitSignal(nameof(scene_end));
         }
     }

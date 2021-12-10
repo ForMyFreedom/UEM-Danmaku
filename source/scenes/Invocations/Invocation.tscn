@@ -25,6 +25,7 @@ tracks/0/keys = {
 [node name="Invocation" type="Node2D"]
 position = Vector2( 377.55, 212.372 )
 script = ExtResource( 2 )
+timeToActions = [  ]
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1e-05, 1e-05 )

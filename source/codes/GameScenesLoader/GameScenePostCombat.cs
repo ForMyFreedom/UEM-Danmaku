@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GameScenePostCombat : MyGameScene
+public class GameScenePostCombat : MyGameScene      //@
 {
     [Export]
     private PackedScene failureScene;
@@ -9,6 +9,6 @@ public class GameScenePostCombat : MyGameScene
     protected override void PassDataToScene(Control scene, ScenesDataCross dataCross)
     {
         if (dataCross.GetDataLine<bool>("win") != true)
-            currentScene = failureScene.Instance<MyControl>();
+            myScene = failureScene.Instance<MyControl>();
     }
 }

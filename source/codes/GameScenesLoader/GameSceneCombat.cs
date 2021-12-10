@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class GameSceneCombat : MyGameScene
+public class GameSceneCombat : MyGameScene      //@
 {
     [Export]
     private GameEnums.GAME_TYPE gameType;

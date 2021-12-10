@@ -18,12 +18,8 @@ public class ExaustiveWork : Enemy
             return;
 
         if (lifeChuncks == 0)
-        {
             StartDeath();
-        }
         else
-        {
             GetNode<AnimationPlayer>("Animation").Play("hitted");
-        }
     }
 }

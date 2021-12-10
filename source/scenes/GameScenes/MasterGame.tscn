@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://source/codes/CombatCodes/Game.cs" type="Script" id=1]
 [ext_resource path="res://source/scenes/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/sfx/game_win.wav" type="AudioStream" id=10]
 [ext_resource path="res://source/codes/CombatCodes/VictoryScreen.cs" type="Script" id=11]
 [ext_resource path="res://assets/player_info/Chip.png" type="Texture" id=12]
+[ext_resource path="res://source/scenes/Enemys/ExaustiveWork.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/player_info/fuses/red_fuse.png" type="Texture" id=14]
 [ext_resource path="res://assets/player_info/fuses/broken_blue_fuse.png" type="Texture" id=15]
 [ext_resource path="res://assets/player_info/fuses/broken_red_fuse.png" type="Texture" id=16]
@@ -154,7 +155,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 1024.25 ]
 }
 REDUCTION_TIME_PER_ENEMY = 0.03
-enemyList = [ ExtResource( 3 ) ]
+enemyList = [ ExtResource( 3 ), ExtResource( 13 ) ]
 MINIMUM_ENEMY_SPAWN_RATE = 0.3
 timerCounterPacked = ExtResource( 25 )
 pointsCounterPacked = ExtResource( 24 )

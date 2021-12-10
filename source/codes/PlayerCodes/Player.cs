@@ -5,21 +5,25 @@ using System;
 public class Player : Node2D
 {
     [Export]
-    private String[] invocationsKeys;
+    private Array<String> invocationsKeys = new Array<string>();
     [Export]
-    private PackedScene[] invocationsScenes;
+    private Array<PackedScene> invocationsScenes = new Array<PackedScene>();
     [Export]
     private int velocity;
     [Export]
     private Array<Vector2> limits = new Array<Vector2>() {Vector2.Zero, Vector2.Zero};
     [Export]
-    private bool DEBUG_GOD_MODE=false;
+    private bool DEBUG_GOD_MODE=false; //@DEBUG
 
     private int VELOCITY_CONST;
 
     private Dictionary<String, Vector2> DIRECTIONS;
     private Array<String> SPRITE_ORIENTATION;
-    private Array<Godot.Collections.Array> currentInvocationsAndActions;
+
+    private Array<Invocation> invocationsNodesArray;
+    private Array<GameEnums.INVOCATION_ACTIONS> invocationsActionsArray;
+    private Array<int> invocationsActionIndexArray;
+    
     private bool invulnerable = false;
 
     private Random random;
@@ -29,36 +33,36 @@ public class Player : Node2D
     {
         VELOCITY_CONST = velocity;
 
-        DIRECTIONS = new Dictionary<string, Vector2>()
-        {
-            {"Up", new Vector2(0,-1)},
-            {"Down", new Vector2(0,1)},
-            {"Left", new Vector2(-1,0)},
-            {"Right", new Vector2(1,0)}
-        };
+        DIRECTIONS = GameEnums.GetDirectionsVectors();
 
         SPRITE_ORIENTATION = new Array<String> { ".", "Right", "Left", "Up", "Down" };
+        
         random = new Random();
 
-        if (!DEBUG_GOD_MODE) //@remove it later
+        if (!DEBUG_GOD_MODE) //@DEBUG
             GetNode<Area2D>("Area").Connect("area_entered", this, "_OnAreaEntered");
 
         CreateAllAttackTimers();
         ConnectAllGeneralTimers();
-        SetDefaultCurrentActions();
+
+        SetDefaultInvocationsNodes();
+        SetDefaultInvocationsActions();
+        SetDefaultInvocationsIndexs();
 
         PlayInvulnerable();
     }
 
+
+
     public override void _Process(float delta)
     {
-        MoveProcess();
-        CrouchProcess();
-        InvocationProcess();
+        DoMoveProcess();
+        DoCrouchProcess();
+        DoInvocationProcess();
     }
 
 
-    public void MoveProcess()
+    public void DoMoveProcess()
     {
         String lastDirectionMoved = ".";
 
@@ -75,20 +79,8 @@ public class Player : Node2D
         GetNode<Sprite>("Sprite").Frame = SPRITE_ORIENTATION.IndexOf(lastDirectionMoved);
     }
 
-    private bool PassThroughALimit(Vector2 positionMod)
-    {
-        if ( Position[0] + positionMod[0] < limits[0][0] ||
-             Position[0] + positionMod[0] > limits[0][1] ||
-             Position[1] + positionMod[1] < limits[1][0] ||
-             Position[1] + positionMod[1] > limits[1][1] )
-        {
-            return true;
-        }
-        return false;
-    }
 
-
-    public void CrouchProcess()
+    public void DoCrouchProcess()
     {
         if (Input.IsActionPressed("Shift"))
             velocity = VELOCITY_CONST / 2;
@@ -97,58 +89,57 @@ public class Player : Node2D
     }
 
 
-    private void InvocationProcess()
+    private void DoInvocationProcess()
     {
-        for (int i=0 ; i < invocationsKeys.Length ; i++)
+        for (int i=0 ; i < invocationsKeys.Count ; i++)
         {
             if (Input.IsActionPressed(invocationsKeys[i]) && GetNode<Timer>($"AttackTimers/Timer{i}").IsStopped())
             {
                 PerformInvocationAction(i);
-                AlterateTimer(i);
                 ChangeInvocationAction(i);
+                AlterateTimer(i);
                 StartTheTimer(i);
             }
         }
     }
 
-    private void PerformInvocationAction(int i)
+
+    private bool PassThroughALimit(Vector2 positionMod)
     {
-        if ((GameEnums.INVOCATION_ACTIONS) currentInvocationsAndActions[i][0] == GameEnums.INVOCATION_ACTIONS.Create)
-            MakeInvocation(i);
-        if ((GameEnums.INVOCATION_ACTIONS)currentInvocationsAndActions[i][0] == GameEnums.INVOCATION_ACTIONS.Cast)
-            CastCustomAction(i);
+        if ( Position[0] + positionMod[0] < limits[0][0] ||
+             Position[0] + positionMod[0] > limits[0][1] ||
+             Position[1] + positionMod[1] < limits[1][0] ||
+             Position[1] + positionMod[1] > limits[1][1])
+        {
+            return true;
+        }
+        return false;
     }
 
 
-    private void AlterateTimer(int i)
+    private void PerformInvocationAction(int i)
     {
-        Invocation invocation = (Invocation)currentInvocationsAndActions[i][1];
-        GetNode<Timer>($"AttackTimers/Timer{i}").WaitTime = invocation.GetInvocationTime();
+        if (invocationsActionsArray[i] == GameEnums.INVOCATION_ACTIONS.Create)
+            MakeInvocation(i);
+        if (invocationsActionsArray[i] == GameEnums.INVOCATION_ACTIONS.Cast)
+            CastCustomAction(i);
     }
 
 
     private void ChangeInvocationAction(int i)
     {
-        Invocation invocation = (Invocation) currentInvocationsAndActions[i][1];
-        currentInvocationsAndActions[i][0] = invocation.GetNextActionType();
+        Invocation invocation = invocationsNodesArray[i];
+        invocationsActionIndexArray[i] = invocation.GetNextIndex(invocationsActionIndexArray[i]);
+        invocationsActionsArray[i] = invocation.GetNextActionType(invocationsActionIndexArray[i]);
     }
 
 
-
-    private void MakeInvocation(int i)
+    private void AlterateTimer(int i)
     {
-        Node2D newInvocation = invocationsScenes[i].Instance<Node2D>();
-        newInvocation.Position = GetRandomInvocationPosition();
-        GetNode("Invocations").AddChild(newInvocation);
-        currentInvocationsAndActions[i][1] = newInvocation;
+        Invocation invocation = invocationsNodesArray[i];
+        GetNode<Timer>($"AttackTimers/Timer{i}").WaitTime = invocation.GetInvocationTime();
     }
 
-
-    private void CastCustomAction(int i)
-    {
-        Invocation invocation = (Invocation) currentInvocationsAndActions[i][1];
-        invocation.PerformAction();
-    }
 
     private void StartTheTimer(int i)
     {
@@ -158,12 +149,26 @@ public class Player : Node2D
 
 
 
-    private Vector2 GetRandomInvocationPosition()
+    private void MakeInvocation(int i)
     {
-        return new Vector2(
-            GetRandomOrientation() * GetMediumRandomPosition(),
-            GetRandomOrientation() * GetMediumRandomPosition()
-        );
+        Invocation newInvocation = invocationsScenes[i].Instance<Invocation>();
+        newInvocation.Position = newInvocation.GetRandomInvocationPosition();
+        GetNode("Invocations").AddChild(newInvocation);
+        invocationsNodesArray[i] = newInvocation;
+    }
+
+
+    private void CastCustomAction(int i)
+    {
+        Invocation invocation = invocationsNodesArray[i];
+        invocation.PerformAction();
+    }
+
+
+    public void SetNewInvocation(String key, PackedScene invocation)
+    {
+        invocationsKeys.Add(key);
+        invocationsScenes.Add(invocation);
     }
 
 
@@ -173,40 +178,17 @@ public class Player : Node2D
             QueueFree();
     }
 
-
-
-    private int GetRandomOrientation()
+    private void _OnInvulTimerTimeout()
     {
-        return (random.Next(1, 3) == 1) ? -1 : 1;
-    }
-
-    private int GetMediumRandomPosition()
-    {
-        return random.Next(50, 200);
+        invulnerable = false;
+        GetNode<AnimationPlayer>("Animation").Stop();
     }
 
 
-    public void SetLimitPair(Vector2 limitPair, int index)
-    {
-        limits[index] = limitPair;
-    }
-
-
-    public void SetDefaultCurrentActions()
-    {
-        currentInvocationsAndActions = new Array<Godot.Collections.Array>() {};
-
-        for (int i=0; i < invocationsKeys.Length; i++)
-        {
-            currentInvocationsAndActions.Add(
-                new Godot.Collections.Array() { GameEnums.INVOCATION_ACTIONS.Create, null }
-            );
-        }
-    }
 
     private void CreateAllAttackTimers()
     {
-        for(int i=0; i<invocationsScenes.Length ; i++)
+        for(int i=0; i< invocationsScenes.Count ; i++)
         {
             Timer newTimer = new Timer();
             newTimer.Name = $"Timer{i}";
@@ -214,6 +196,7 @@ public class Player : Node2D
             GetNode<Node>("AttackTimers").AddChild(newTimer);
         }
     }
+
 
     private void ConnectAllGeneralTimers()
     {
@@ -224,6 +207,43 @@ public class Player : Node2D
     }
 
 
+
+
+    public void SetDefaultInvocationsActions()
+    {
+        invocationsActionsArray = new Array<GameEnums.INVOCATION_ACTIONS>();
+        for (int i = 0 ; i < invocationsScenes.Count ; i++)
+        {
+            invocationsActionsArray.Add(GameEnums.INVOCATION_ACTIONS.Create);
+        }
+    }
+
+
+    public void SetDefaultInvocationsNodes()
+    {
+        invocationsNodesArray = new Array<Invocation>();
+        for (int i = 0 ; i < invocationsScenes.Count ; i++)
+        {
+            invocationsNodesArray.Add(null);
+        }
+    }
+
+    public void SetDefaultInvocationsIndexs()
+    {
+        invocationsActionIndexArray = new Array<int>();
+        for(int i = 0 ; i < invocationsScenes.Count ; i++)
+        {
+            invocationsActionIndexArray.Add(0);
+        }
+    }
+
+
+
+
+    public void SetLimitPair(Vector2 limitPair, int index)
+    {
+        limits[index] = limitPair;
+    }
 
     public Array<Vector2> GetLimits()
     {
@@ -238,11 +258,4 @@ public class Player : Node2D
         GetNode<AnimationPlayer>("Animation").Play("invul");
     }
 
-
-    private void _OnInvulTimerTimeout()
-    {
-        invulnerable = false;
-        GetNode<Area2D>("Area").Monitoring = true;
-        GetNode<AnimationPlayer>("Animation").Stop();
-    }
 }

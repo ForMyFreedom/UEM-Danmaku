@@ -4,7 +4,7 @@ using System;
 public class LowNet : Enemy
 {
     [Export]
-    private NodePath followTimerPath;
+    private NodePath walkThroughLineTimerPath;
 
     Vector2 distanceProportion;
 
@@ -12,18 +12,20 @@ public class LowNet : Enemy
     {
         base._Ready();
         distanceProportion = GetDistanceProportionToPlayer();
-        GetNode<Timer>(followTimerPath).Start();
+        GetNode<Timer>(walkThroughLineTimerPath).Start();
     }
 
 
     protected override void FollowTheEntity()
     {
-        if (!GetNode<Timer>(followTimerPath).IsStopped())
-            MoveEntity(distanceProportion);
+        if (GetNode<Timer>(walkThroughLineTimerPath).IsStopped())
+        {
+            distanceProportion = GetDistanceProportionToPlayer();
+            GetNode<Timer>(walkThroughLineTimerPath).Start();
+        }
         else
         {
-            GetNode<Timer>(followTimerPath).Start();
-            distanceProportion = GetDistanceProportionToPlayer();
+            MoveEntity(distanceProportion);
         }
     }
 

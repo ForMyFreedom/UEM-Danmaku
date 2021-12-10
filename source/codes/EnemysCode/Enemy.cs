@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Enemy : Node2D
+public class Enemy : Node2D    //@
 {
     [Export]
     protected float velocity;

@@ -28,9 +28,10 @@ tracks/0/keys = {
 [node name="Player" type="Node2D"]
 position = Vector2( 500.633, 309.263 )
 script = ExtResource( 2 )
-invocationsKeys = PoolStringArray( "Z", "X" )
+invocationsKeys = [ "Z", "X" ]
 invocationsScenes = [ ExtResource( 3 ), ExtResource( 4 ) ]
 velocity = 6
+limits = [ Vector2( 0, 1000 ), Vector2( 0, 1000 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.695496, -0.293762 )

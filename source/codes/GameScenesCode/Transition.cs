@@ -9,7 +9,13 @@ public class Transition : MyControl
     [Export]
     NodePath minorTextNodePath;
 
-    Random random;
+
+    public override void _Ready()
+    {
+        GetNode<AnimationPlayer>("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
+    }
+
+    
 
     public void SetMajorText(String text)
     {
@@ -23,19 +29,14 @@ public class Transition : MyControl
 
 
 
-    public override void _Ready()
+    private void _OnAnimationFinished(String aniName)
     {
-        GetNode<AnimationPlayer>("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
+        EmitSignal(nameof(scene_end));
     }
+
 
     protected override ScenesDataCross GetDataCrossType()
     {
         return new BlankDataCross();
     }
-
-    private void _OnAnimationFinished(String aniName)
-    {
-        EmitSignal("scene_end");
-    }
-
 }

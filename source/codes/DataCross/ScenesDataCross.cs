@@ -11,6 +11,7 @@ public abstract class ScenesDataCross : Godot.Object
         data = new Dictionary<string, object>();
     }
 
+
     public abstract void SetAllData(Node node);
 
 
@@ -19,15 +20,15 @@ public abstract class ScenesDataCross : Godot.Object
         data.Add(str, obj);
     }
 
-    public Dictionary<String, System.Object> GetData()
-    {
-        return data;
-    }
-
     public T GetDataLine<T>(String str)
     {
         object obj;
         var result = data.TryGetValue(str, out obj);
-        return (T) obj;
-    }  
+        return (T)obj;
+    }
+
+    public Dictionary<String, System.Object> GetData()
+    {
+        return data;
+    }
 }

@@ -7,7 +7,8 @@
 [node name="Rui" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.588235 )
 script = ExtResource( 3 )
-timeSpawn = 1.0
+timeToActions = [ 3.0, 0.8 ]
+actionsOrder = [ 0, 1 ]
 velocity = 15.0
 
 [node name="Sprite" parent="." index="0"]

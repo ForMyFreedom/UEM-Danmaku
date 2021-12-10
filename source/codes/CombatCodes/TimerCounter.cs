@@ -9,6 +9,7 @@ public class TimerCounter : AbstractCounter
         game.Connect("player_come_back", this, "_OnPlayerComeBack");
     }
 
+
     public override void _Ready()
     {
         baseText = "Tempo: ";
@@ -25,7 +26,6 @@ public class TimerCounter : AbstractCounter
     {
         return GetNode<Timer>("Timer").TimeLeft <= 0;
     }
-
 
 
 

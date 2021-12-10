@@ -9,7 +9,8 @@ extents = Vector2( 21.9416, 22.022 )
 
 [node name="Elvio" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-timeSpawn = 0.6
+timeToActions = [ 1.5 ]
+actionsOrder = [ 0 ]
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

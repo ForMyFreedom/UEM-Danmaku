@@ -6,15 +6,15 @@ public abstract class MyGameScene : Node
     [Export]
     protected PackedScene originScene;
 
-    protected MyControl currentScene;
+    protected MyControl myScene;
 
 
-    public void Load(NodePath parent, ScenesDataCross dataCross)
+    public void Load(NodePath currentSceneNodePath, ScenesDataCross dataCross)
     {
-        currentScene = originScene.Instance<MyControl>();
-        PassDataToScene(currentScene, dataCross);
-        currentScene.Connect("scene_end", this, "_OnSceneEnd");
-        GetNode(parent).AddChild(currentScene);
+        myScene = originScene.Instance<MyControl>();
+        PassDataToScene(myScene, dataCross);
+        myScene.Connect("scene_end", this, "_OnSceneEnd");
+        GetNode(currentSceneNodePath).AddChild(myScene);
     }
 
     protected abstract void PassDataToScene(Control scene, ScenesDataCross dataCross);
@@ -22,7 +22,7 @@ public abstract class MyGameScene : Node
 
     protected void _OnSceneEnd()
     {
-        GetParent<ScenesLoader>()._OnPassToNextScene(currentScene.GetDataCross());
+        GetParent<ScenesLoader>()._OnPassToNextScene(myScene.GetDataCross());   //@
     }
 
 }

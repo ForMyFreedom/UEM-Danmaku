@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class MasterGame : MyControl
+public class MasterGame : MyControl     //@
 {
     [Export]
     NodePath gamePath;
