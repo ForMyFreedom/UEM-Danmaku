@@ -14,5 +14,7 @@ sounds of born and death, lol
 
 # Bugs
 [ ] minorLabel in transitions don't reset the percentage?
+
 [x] Player above the winScreen
+
 [x] Enemy are dont disable and can kill even after declaredted death
