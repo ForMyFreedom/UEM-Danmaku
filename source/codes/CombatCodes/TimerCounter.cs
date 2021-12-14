@@ -10,15 +10,15 @@ public class TimerCounter : AbstractCounter
     }
 
 
-    public override void _Ready()
+    public override void ShrinkPontuation()
     {
-        baseText = "Tempo: ";
+        GetNode<Timer>("Timer").WaitTime += 5; //@
     }
 
 
     public override void _Process(float delta)
     {
-        GetNode<Label>("Label").Text = baseText + (int) GetNode<Timer>("Timer").TimeLeft;
+        GetNode<Label>("Label").Text = GetBaseText() + (int) GetNode<Timer>("Timer").TimeLeft;
     }
 
 
@@ -40,4 +40,11 @@ public class TimerCounter : AbstractCounter
         GetNode<Timer>("Timer").Paused = false;
     }
 
+
+
+
+    public override string GetBaseText()
+    {
+        return "Tempo: ";
+    }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Linq;
 using System;
 
 public class Player : Node2D
@@ -13,7 +14,7 @@ public class Player : Node2D
     [Export]
     private Array<Vector2> limits = new Array<Vector2>() {Vector2.Zero, Vector2.Zero};
     [Export]
-    private bool DEBUG_GOD_MODE=false; //@DEBUG
+    private bool DEBUG_GOD_MODE=false; //DEBUG
 
     private int VELOCITY_CONST;
 
@@ -39,7 +40,7 @@ public class Player : Node2D
         
         random = new Random();
 
-        if (!DEBUG_GOD_MODE) //@DEBUG
+        if (!DEBUG_GOD_MODE) //DEBUG
             GetNode<Area2D>("Area").Connect("area_entered", this, "_OnAreaEntered");
 
         CreateAllAttackTimers();
@@ -93,7 +94,9 @@ public class Player : Node2D
     {
         for (int i=0 ; i < invocationsKeys.Count ; i++)
         {
-            if (Input.IsActionPressed(invocationsKeys[i]) && GetNode<Timer>($"AttackTimers/Timer{i}").IsStopped())
+            if (invocationsScenes.ToList().ElementAtOrDefault(i) == null) return;
+            if (Input.IsActionPressed(invocationsKeys[i]) &&
+                GetNode<Timer>($"AttackTimers/Timer{i}").IsStopped())
             {
                 PerformInvocationAction(i);
                 ChangeInvocationAction(i);
@@ -258,4 +261,9 @@ public class Player : Node2D
         GetNode<AnimationPlayer>("Animation").Play("invul");
     }
 
+
+    public void SetPackedSceneInvocations(PackedScene[] invocations)
+    {
+        this.invocationsScenes = new Array<PackedScene>(invocations);
+    }
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Game : Control		//@
+public class Game : Control
 {
 	[Export]
 	private float REDUCTION_TIME_PER_ENEMY;
@@ -13,6 +13,8 @@ public class Game : Control		//@
 	private PackedScene timerCounterPacked;
 	[Export]
 	private PackedScene pointsCounterPacked;
+	[Export]
+	private NodePath victoryScreenNodePath;
 
 	[Signal]
 	public delegate void player_lost_life();
@@ -83,6 +85,7 @@ public class Game : Control		//@
 		}
 	}
 
+
 	private void ConsiderateWinOfPlayer()
     {
 		if (counter.IsWinCondition())
@@ -126,14 +129,14 @@ public class Game : Control		//@
 		gameContinue = false;
 		KillAllEnemys();
 		GetNode<MultipleStreamPlayer>("AudioPlayer").PlayAudioByName("game_win");
-		GetNode<VictoryScreen>("VictoryScreen").ShowVictory();
+		GetNode<VictoryScreen>(victoryScreenNodePath).ShowVictory();
     }
 
 
 	private void KillAllEnemys()
     {
 		Node enemys = GetNode("Enemys");
-		foreach (Node child in enemys.GetChildren())
+		foreach (Enemy child in enemys.GetChildren())
         {
 			enemys.RemoveChild(child);
 			child.QueueFree();
@@ -162,7 +165,7 @@ public class Game : Control		//@
 		points = p;
     }
 
-	public void SetGameType(GameEnums.GAME_TYPE type)
+	public void SetGameType(GameEnums.GAME_TYPE type) //awfull...
     {
         switch (type)
         {
@@ -178,14 +181,17 @@ public class Game : Control		//@
 		AddChild(counter);
     }
 
-	private bool isWinCondition()
+
+
+	public void SetEnemyList(PackedScene[] enemyList)
     {
-		return false;		//@
+		this.enemyList = enemyList;
     }
 
-	public int GetQuantOfPointToWin()
+	
+	public void ShrinkPontuation()
     {
-		return 30;			//@
-	}
+		counter.ShrinkPontuation();
+    }
 
 }

@@ -2,14 +2,14 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class GameDataCross : ScenesDataCross
+public class MenuDataCross : ScenesDataCross
 {
-    public GameDataCross() : base() { }
+    public MenuDataCross() : base() { }
 
     public override void SetAllData(Node node)
     {
-        MasterGame master = (MasterGame) node;
-        SetDataLine("win", master.playerWin);
+        MainMenu menu = (MainMenu) node;
+        SetDataLine("index", menu.GetNextSceneIndex());
     }
 
 }

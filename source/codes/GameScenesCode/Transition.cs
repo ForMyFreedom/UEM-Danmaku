@@ -12,7 +12,10 @@ public class Transition : MyControl
 
     public override void _Ready()
     {
-        GetNode<AnimationPlayer>("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
+        GetNode<Label>(majorTextNodePath).PercentVisible = 0;
+        GetNode<Label>(minorTextNodePath).PercentVisible = 0;
+        GetNode<AnimationPlayer>("Animation").Play("show");
+        GetNode("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
     }
 
     

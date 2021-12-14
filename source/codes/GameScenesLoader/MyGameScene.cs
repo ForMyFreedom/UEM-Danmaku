@@ -22,7 +22,7 @@ public abstract class MyGameScene : Node
 
     protected void _OnSceneEnd()
     {
-        GetParent<ScenesLoader>()._OnPassToNextScene(myScene.GetDataCross());   //@
+        GetParent<ScenesLoader>()._OnPassToNextScene(myScene.GetDataCross());
     }
 
 }

@@ -8,7 +8,7 @@ public class ScenesLoader : Node
     [Export]
     private NodePath globalDataNodePath;
 
-    private int sceneIndex;
+    public int sceneIndex;
 
     public override void _Ready()
     {

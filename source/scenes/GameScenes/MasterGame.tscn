@@ -159,6 +159,7 @@ enemyList = [ ExtResource( 3 ), ExtResource( 13 ) ]
 MINIMUM_ENEMY_SPAWN_RATE = 0.3
 timerCounterPacked = ExtResource( 25 )
 pointsCounterPacked = ExtResource( 24 )
+victoryScreenNodePath = NodePath("CanvasLayer/VictoryScreen")
 
 [node name="BackGround" type="TextureRect" parent="V-Box/GameMargin/Game"]
 modulate = Color( 0.137255, 0.768627, 0.25098, 1 )
@@ -177,16 +178,23 @@ one_shot = true
 
 [node name="Enemys" type="Node2D" parent="V-Box/GameMargin/Game"]
 
-[node name="VictoryScreen" type="Control" parent="V-Box/GameMargin/Game"]
+[node name="CanvasLayer" type="CanvasLayer" parent="V-Box/GameMargin/Game"]
+layer = 10
+
+[node name="VictoryScreen" type="Control" parent="V-Box/GameMargin/Game/CanvasLayer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = -1.0
+margin_right = 24.0
+margin_bottom = -1.0
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="V-Box/GameMargin/Game/VictoryScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -195,13 +203,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="V-Box/GameMargin/Game/VictoryScreen/VBoxContainer"]
-margin_right = 1150.0
-margin_bottom = 288.0
+[node name="Control" type="Control" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen/VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 323.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VictoryLabel" type="Label" parent="V-Box/GameMargin/Game/VictoryScreen/VBoxContainer/Control"]
+[node name="VictoryLabel" type="Label" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen/VBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,17 +225,17 @@ __meta__ = {
 "_editor_description_": "Pontos: "
 }
 
-[node name="Control2" type="Control" parent="V-Box/GameMargin/Game/VictoryScreen/VBoxContainer"]
-margin_top = 292.0
-margin_right = 1150.0
-margin_bottom = 580.0
+[node name="Control2" type="Control" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen/VBoxContainer"]
+margin_top = 327.0
+margin_right = 1200.0
+margin_bottom = 650.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Re-startLabel" type="Label" parent="V-Box/GameMargin/Game/VictoryScreen/VBoxContainer/Control2"]
+[node name="Re-startLabel" type="Label" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen/VBoxContainer/Control2"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -240,7 +248,7 @@ __meta__ = {
 "_editor_description_": "Pontos: "
 }
 
-[node name="Animation" type="AnimationPlayer" parent="V-Box/GameMargin/Game/VictoryScreen"]
+[node name="Animation" type="AnimationPlayer" parent="V-Box/GameMargin/Game/CanvasLayer/VictoryScreen"]
 anims/double_reveal = SubResource( 3 )
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="V-Box/GameMargin/Game"]
