@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/invocations/Elvio.png" type="Texture" id=2]
+[ext_resource path="res://source/scenes/GameScenes/MinorTransition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sfx/win_Invocation.wav" type="AudioStream" id=4]
+[ext_resource path="res://source/codes/AudioCodes/StartPlayingAudioPlayer.cs" type="Script" id=5]
+[ext_resource path="res://source/codes/GameScenesCode/PostCombatScene.cs" type="Script" id=17]
+[ext_resource path="res://assets/textures/slaoq_texture.png" type="Texture" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 2 ),
+"transitions": PoolRealArray( 4, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/Control2/Label:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 2, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/Control/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="PostCombatScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+animationNodePath = NodePath("MinorTransition/Animation")
+labelNodePath = NodePath("MinorTransition/Label")
+minorTransitionNodePath = NodePath("MinorTransition")
+majorTransitionNodePath = NodePath("NewPower/VBoxContainer/Control2/Label")
+invocationTextureNodePath = NodePath("NewPower/VBoxContainer/TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 18 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewPower" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewPower"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="NewPower/VBoxContainer"]
+margin_right = 1200.0
+margin_bottom = 214.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="NewPower/VBoxContainer/Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "Voce ganhou poderzinho!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="NewPower/VBoxContainer"]
+margin_top = 218.0
+margin_right = 1200.0
+margin_bottom = 432.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewPower/VBoxContainer/Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+text = "null"
+align = 1
+valign = 1
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="NewPower/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 436.0
+margin_right = 1200.0
+margin_bottom = 650.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NewPower"]
+autoplay = "show_new_power"
+anims/show_new_power = SubResource( 3 )
+
+[node name="MinorTransition" parent="." instance=ExtResource( 3 )]
+visible = false
+autoPlay = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+script = ExtResource( 5 )

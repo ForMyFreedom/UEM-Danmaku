@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/player.png" type="Texture" id=1]
 [ext_resource path="res://source/codes/PlayerCodes/Player.cs" type="Script" id=2]
-[ext_resource path="res://source/scenes/Invocations/Elvio.tscn" type="PackedScene" id=3]
-[ext_resource path="res://source/scenes/Invocations/Rui.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.6104, 17.6142 )
@@ -28,9 +26,9 @@ tracks/0/keys = {
 [node name="Player" type="Node2D"]
 position = Vector2( 500.633, 309.263 )
 script = ExtResource( 2 )
-invocationsKeys = PoolStringArray( "Z", "X" )
-invocationsScenes = [ ExtResource( 3 ), ExtResource( 4 ) ]
+invocationsKeys = [ "Z", "X", "C", "V" ]
 velocity = 6
+limits = [ Vector2( 0, 1000 ), Vector2( 0, 1000 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.695496, -0.293762 )

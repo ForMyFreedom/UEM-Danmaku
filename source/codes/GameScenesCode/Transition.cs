@@ -2,40 +2,45 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class Transition : MyControl
+public class Transition : BaseTransition
 {
     [Export]
     NodePath majorTextNodePath;
     [Export]
     NodePath minorTextNodePath;
 
-    Random random;
 
-    public void SetMajorText(String text)
+    public override void _Ready()
+    {
+        GetNode<Label>(majorTextNodePath).PercentVisible = 0;
+        GetNode<Label>(minorTextNodePath).PercentVisible = 0;
+        GetNode<AnimationPlayer>("Animation").Play("show");
+        GetNode("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
+    }
+
+    
+
+    public override void SetMajorText(String text)
     {
         GetNode<Label>(majorTextNodePath).Text = text;
     }
 
-    public void SetMinorText(String text)
+    public override void SetMinorText(String text)
     {
         GetNode<Label>(minorTextNodePath).Text = text;
     }
 
+    public override void SetTexture(Texture texture) { }
 
 
-    public override void _Ready()
+    private void _OnAnimationFinished(String aniName)
     {
-        GetNode<AnimationPlayer>("Animation").Connect("animation_finished", this, "_OnAnimationFinished");
+        EmitSignal(nameof(scene_end));
     }
+
 
     protected override ScenesDataCross GetDataCrossType()
     {
         return new BlankDataCross();
     }
-
-    private void _OnAnimationFinished(String aniName)
-    {
-        EmitSignal("scene_end");
-    }
-
 }

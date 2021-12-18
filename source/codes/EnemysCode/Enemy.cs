@@ -22,26 +22,37 @@ public class Enemy : Node2D
 
     public override void _Process(float delta)
     {
-        if (IsInstanceValid(entityToFollow))
-            FollowTheEntity();
-        else
-            RunRandomly();
+        MoveProcess();
     }
 
-
-
-    protected virtual void FollowTheEntity()
+    protected virtual void MoveProcess()
     {
-        MoveEntity(GetDistanceProportionToPlayer());
+        if (IsInstanceValid(entityToFollow))
+            MoveEntity(GetDistanceProportionToPlayer());
+        else
+            MoveEntity(GetRandomProportion());
     }
 
-    
     
     protected Vector2 GetDistanceProportionToPlayer()
     {
-        Vector2 entityPos = entityToFollow.GlobalPosition;
-        Vector2 myPos = GlobalPosition;
-        return (entityPos - myPos).Normalized();
+        try
+        {
+            Vector2 entityPos = entityToFollow.GlobalPosition;
+            Vector2 myPos = GlobalPosition;
+            return (entityPos - myPos).Normalized();
+        }
+        catch (Exception)
+        {
+            return GetRandomProportion();
+        }
+    }
+
+    protected Vector2 GetRandomProportion()
+    {
+        float xMove = (float) (random.Next(-1000, 1000)/1000.0);
+        float yMove = (random.Next(0,2)==1) ? (1 - xMove) : (xMove-1);
+        return new Vector2(xMove, yMove);
     }
 
 
@@ -51,21 +62,8 @@ public class Enemy : Node2D
     }
 
 
-    protected void RunRandomly()
-    {
-        Position += GetRandomDistance() * velocity;
-    }
 
-
-
-    protected Vector2 GetRandomDistance()
-    {
-        float xMove = (float) (random.Next(-1000, 1000)/1000.0);
-        float yMove = (random.Next(0,2)==1) ? (1 - xMove) : (xMove-1);
-        return new Vector2(xMove, yMove);
-    }
-
-    protected virtual void StartDeath()
+    public virtual void StartDeath()
     {
         EmitSignal(nameof(death_signal));
         GetNode<AnimationPlayer>("Animation").Play("death");
@@ -107,4 +105,13 @@ public class Enemy : Node2D
         entityToFollow = entity;
     }
 
+
+    public void DeleteEnemyArea()
+    {
+        try
+        {
+            GetNode("Area").QueueFree();
+        }
+        catch (Exception) { }
+    }
 }

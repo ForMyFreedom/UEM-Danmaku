@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/misc/blank_invocation.png" type="Texture" id=1]
 [ext_resource path="res://source/codes/InvocationsCodes/Invocation.cs" type="Script" id=2]
+[ext_resource path="res://source/codes/AudioCodes/MultipleStreamPlayer.cs" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.0691, 22.022 )
@@ -25,6 +26,7 @@ tracks/0/keys = {
 [node name="Invocation" type="Node2D"]
 position = Vector2( 377.55, 212.372 )
 script = ExtResource( 2 )
+timeToActions = [  ]
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1e-05, 1e-05 )
@@ -39,3 +41,6 @@ shape = SubResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 anims/spawn = SubResource( 2 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 3 )

@@ -9,23 +9,43 @@ public class PointsCounter : AbstractCounter
     public override void StartUp(Game game)
     {
         game.Connect("enemy_died", this, "_OnEnemyKilled");
+        maxPoints = 30; //@
     }
 
     public override void _Ready()
     {
-        maxPoints = 30;
         points = 0;
-        baseText = "Pontos: ";
     }
 
     private void _OnEnemyKilled()
     {
         points++;
-        GetNode<Label>("Label").Text = baseText + points;
+        ActualizeLabel();
     }
+
+    public override void ShrinkPontuation()
+    {
+        points -= 3;
+        ActualizeLabel();
+    }
+
+
 
     public override bool IsWinCondition()
     {
         return points >= maxPoints;
+    }
+
+
+
+    private void ActualizeLabel()
+    {
+        GetNode<Label>("Label").Text = GetBaseText() + points;
+    }
+
+
+    public override string GetBaseText()
+    {
+        return "Pontos: ";
     }
 }

@@ -9,36 +9,34 @@ public class Rui : Invocation
     private bool wasCasted = false;
     private Vector2 moveVector;
 
+
     public override void _Ready()
     {
         base._Ready();
-        actionsOrder = new[] {GameEnums.INVOCATION_ACTIONS.Cast, GameEnums.INVOCATION_ACTIONS.Create};
     }
+    
 
     public override void _Process(float delta)
     {
         if (!wasCasted)
-        {
             base._Process(delta);
-        }
         else
-        {
             Position += moveVector * velocity;
-        }
     }
+
 
     public override void PerformAction()
     {
         CalculateMoveVector();
-        GetNode<Area2D>("Area").Monitorable = true;
-        Vector2 position = GlobalPosition;
-        SetAsToplevel(true);
-        GlobalPosition = position;
-        Modulate = new Color(1, 1, 1, 1);
-        wasCasted = true;
+        RemoveItFromPlayersDomains();
+        DoGeneralAlterations();
     }
 
+
+
     protected override void OnAnimationEnd(String aniName) { }
+
+
 
     private void CalculateMoveVector()
     {
@@ -47,5 +45,21 @@ public class Rui : Invocation
         Vector2 orientation = new Vector2((moveVector.x > 0) ? 1 : -1, (moveVector.y > 0) ? 1 : -1);
 
         moveVector  = moveVector * moveVector * orientation;
+    }
+
+
+    private void RemoveItFromPlayersDomains()
+    {
+        Vector2 position = GlobalPosition;
+        SetAsToplevel(true);
+        GlobalPosition = position;
+    }
+
+    
+    private void DoGeneralAlterations()
+    {
+        Modulate = new Color(1, 1, 1, 1);
+        GetNode<Area2D>("Area").Monitorable = true;
+        wasCasted = true;
     }
 }

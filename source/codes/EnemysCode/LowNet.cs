@@ -4,7 +4,7 @@ using System;
 public class LowNet : Enemy
 {
     [Export]
-    private NodePath followTimerPath;
+    private NodePath walkThroughLineTimerPath;
 
     Vector2 distanceProportion;
 
@@ -12,19 +12,47 @@ public class LowNet : Enemy
     {
         base._Ready();
         if(IsInstanceValid(entityToFollow)) distanceProportion = GetDistanceProportionToPlayer();
-        GetNode<Timer>(followTimerPath).Start();
+        distanceProportion = GetDistanceProportionToPlayer();
+        GetNode<Timer>(walkThroughLineTimerPath).Start();
     }
 
 
-    protected override void FollowTheEntity()
+    protected override void MoveProcess()
     {
-        if (!GetNode<Timer>(followTimerPath).IsStopped())
-            MoveEntity(distanceProportion);
+        if (IsInstanceValid(entityToFollow))
+            MakeAlterMove();
         else
+            MoveEntity(GetRandomProportion());
+    }
+
+
+    private void MakeAlterMove()
+    {
+        try
         {
-            GetNode<Timer>(followTimerPath).Start();
-            distanceProportion = GetDistanceProportionToPlayer();
+            if (GetNode<Timer>(walkThroughLineTimerPath).IsStopped())
+            {
+                distanceProportion = GetDistanceProportionToPlayer();
+                GetNode<Timer>(walkThroughLineTimerPath).WaitTime = GetRandomWaitTime();
+                GetNode<Timer>(walkThroughLineTimerPath).Start();
+            }
+            else
+            {
+                MoveEntity(distanceProportion);
+            }
         }
+        catch (Exception)
+        {
+            MoveEntity(GetRandomProportion());
+        }
+
+    }
+
+
+
+    private float GetRandomWaitTime()
+    {
+        return random.Next(400, 1300) / 1000.0f;
     }
 
 

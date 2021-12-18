@@ -14,5 +14,10 @@ public abstract class MyControl: Control
         return dataCross;
     }
 
+    protected GlobalData GetGlobalData()
+    {
+        return GetParent().GetParent<AllGame>().GetGlobalData();
+    }
+
     protected abstract ScenesDataCross GetDataCrossType();
 }

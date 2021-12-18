@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://source/codes/AllGame.cs" type="Script" id=1]
 [ext_resource path="res://source/codes/GameScenesLoader/ScenesLoader.cs" type="Script" id=2]
@@ -27,6 +27,20 @@
 [ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=25]
 [ext_resource path="res://source/codes/GameScenesLoader/GameSceneMainMenu.cs" type="Script" id=26]
 [ext_resource path="res://source/scenes/MajorScenes/MainMenu.tscn" type="PackedScene" id=27]
+[ext_resource path="res://source/scenes/GameScenes/PostCombatScene.tscn" type="PackedScene" id=28]
+[ext_resource path="res://source/scenes/Enemys/LowNet.tscn" type="PackedScene" id=29]
+[ext_resource path="res://source/scenes/Invocations/Elvio.tscn" type="PackedScene" id=30]
+[ext_resource path="res://assets/invocations/Elvio.png" type="Texture" id=31]
+[ext_resource path="res://source/scenes/GameScenes/MinorTransition.tscn" type="PackedScene" id=32]
+[ext_resource path="res://source/scenes/Enemys/ExaustiveWork.tscn" type="PackedScene" id=33]
+[ext_resource path="res://assets/invocations/demon.png" type="Texture" id=34]
+[ext_resource path="res://source/scenes/Invocations/Rui.tscn" type="PackedScene" id=35]
+[ext_resource path="res://assets/textures/background.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/vector.png" type="Texture" id=37]
+[ext_resource path="res://assets/musics/Dorama.wav" type="AudioStream" id=38]
+[ext_resource path="res://assets/musics/NotJustBeyond.wav" type="AudioStream" id=39]
+[ext_resource path="res://assets/musics/FragileDoor.wav" type="AudioStream" id=40]
+[ext_resource path="res://assets/musics/Jupiter.wav" type="AudioStream" id=41]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -119,33 +133,11 @@ _bundled = {
 "version": 2
 }
 
-[sub_resource type="PackedScene" id=6]
-_bundled = {
-"conn_count": 0,
-"conns": PoolIntArray(  ),
-"editable_instances": [  ],
-"names": PoolStringArray( "Transition", "anchor_right", "anchor_bottom", "script", "__meta__", "majorTextNodePath", "minorTextNodePath", "Control", "ColorRect", "color", "Animation", "autoplay", "anims/show", "AnimationPlayer", "VBoxContainer", "MajorLabel", "margin_right", "margin_bottom", "size_flags_horizontal", "size_flags_vertical", "custom_fonts/font", "text", "align", "valign", "percent_visible", "Label", "MinorLabel", "margin_top", "FlickSFX", "audioStreamList", "audioNameList", "AudioStreamPlayer" ),
-"node_count": 7,
-"node_paths": [  ],
-"nodes": PoolIntArray( -1, -1, 7, 0, -1, 6, 1, 0, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 0, 0, 0, 8, 8, -1, 4, 1, 0, 2, 0, 9, 5, 4, 6, 0, 0, 0, 13, 10, -1, 2, 11, 7, 12, 8, 0, 0, 0, 14, 14, -1, 3, 1, 0, 2, 0, 4, 9, 0, 3, 0, 25, 15, -1, 9, 16, 10, 17, 11, 18, 12, 19, 12, 20, 13, 21, 14, 22, 15, 23, 16, 24, 17, 0, 3, 0, 25, 26, -1, 10, 27, 18, 16, 10, 17, 19, 18, 12, 19, 12, 20, 20, 21, 21, 22, 15, 24, 17, 4, 22, 0, 0, 0, 31, 28, -1, 3, 3, 23, 29, 24, 30, 25, 0 ),
-"variants": [ 1.0, ExtResource( 14 ), {
-"_edit_use_anchors_": false
-}, NodePath("VBoxContainer/MajorLabel"), NodePath("VBoxContainer/MinorLabel"), Color( 0, 0, 0, 1 ), {
-"_edit_use_anchors_": false
-}, "show", SubResource( 1 ), {
-"_edit_use_anchors_": false
-}, 1200.0, 323.0, 3, SubResource( 2 ), "Mundo 1000", 1, 2, 0.0, 327.0, 650.0, SubResource( 3 ), "A nos flenin nin flenin", {
-"_edit_use_anchors_": false
-}, ExtResource( 11 ), [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ) ], PoolStringArray( "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ) ],
-"version": 2
-}
-
 [node name="AllGame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 102.5 ],
 "_edit_use_anchors_": false
 }
 loaderNodePath = NodePath("ScenesLoader")
@@ -171,11 +163,35 @@ minorText = "Comercio Eletronico"
 [node name="Combat1" type="Node" parent="ScenesLoader"]
 script = ExtResource( 5 )
 originScene = ExtResource( 6 )
+enemyList = [ ExtResource( 29 ) ]
+invocationList = [  ]
+backgroundTexture = ExtResource( 36 )
+musicStream = ExtResource( 40 )
 
 [node name="PostCombat1" type="Node" parent="ScenesLoader"]
 script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 28 )
+majorText = "Elvio, Guerreiro da Resistencia.Destrua seus inimigos com sua resistividade eletrica.Precione Z para Invocar"
+minorText = "vai te fude 1"
+newPowerTexture = ExtResource( 31 )
+
+[node name="Combat2" type="Node" parent="ScenesLoader"]
+script = ExtResource( 5 )
+originScene = ExtResource( 6 )
+gameType = 1
+enemyList = [ ExtResource( 29 ) ]
+invocationList = [ ExtResource( 30 ) ]
+backgroundTexture = ExtResource( 36 )
+musicStream = ExtResource( 38 )
+
+[node name="PostCombat2" type="Node" parent="ScenesLoader"]
+script = ExtResource( 7 )
+originScene = ExtResource( 9 )
+failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 32 )
+minorText = "vai te fude 2"
 
 [node name="Transition2" type="Node" parent="ScenesLoader"]
 script = ExtResource( 3 )
@@ -183,21 +199,44 @@ originScene = SubResource( 5 )
 majorText = "Mundo 2"
 minorText = "Dimensao de Forca"
 
-[node name="Combat2" type="Node" parent="ScenesLoader"]
+[node name="Combat3" type="Node" parent="ScenesLoader"]
 script = ExtResource( 5 )
 originScene = ExtResource( 6 )
-gameType = 1
+enemyList = [ ExtResource( 29 ), ExtResource( 33 ) ]
+invocationList = [ ExtResource( 30 ) ]
+backgroundTexture = ExtResource( 37 )
+musicStream = ExtResource( 41 )
 
-[node name="PostCombat2" type="Node" parent="ScenesLoader"]
+[node name="PostCombat3" type="Node" parent="ScenesLoader"]
 script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 28 )
+majorText = "Rui, Lanceiro Dimensional.Ataque em dois estados: Definicao->Liberacao.Precione X para Invocar-Ativar"
+minorText = "vai te fude 3"
+newPowerTexture = ExtResource( 34 )
+
+[node name="Combat4" type="Node" parent="ScenesLoader"]
+script = ExtResource( 5 )
+originScene = ExtResource( 6 )
+gameType = 1
+enemyList = [ ExtResource( 29 ), ExtResource( 33 ) ]
+invocationList = [ ExtResource( 30 ), ExtResource( 35 ) ]
+backgroundTexture = ExtResource( 37 )
+musicStream = ExtResource( 39 )
+
+[node name="PostCombat4" type="Node" parent="ScenesLoader"]
+script = ExtResource( 7 )
+originScene = ExtResource( 9 )
+failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 32 )
+minorText = "vai te fude 4"
 
 [node name="Transition3" type="Node" parent="ScenesLoader"]
 script = ExtResource( 3 )
-originScene = SubResource( 6 )
+originScene = SubResource( 4 )
 majorText = "Mundo 3"
-minorText = "Muito gay"
+minorText = "Cumming Soon kkj"
 
 [node name="CurrentScene" type="Control" parent="."]
 anchor_right = 1.0

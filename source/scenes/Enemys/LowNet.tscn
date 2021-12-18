@@ -13,8 +13,8 @@ radius = 26.3048
 [node name="LowNet" instance=ExtResource( 1 )]
 position = Vector2( 481.293, 301.085 )
 script = ExtResource( 6 )
-velocity = 3.5
-followTimerPath = NodePath("FollowTimer")
+velocity = 5.5
+walkThroughLineTimerPath = NodePath("WalkThroughLineTimer")
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0.130859, -0.102295 )
@@ -28,5 +28,5 @@ shape = SubResource( 1 )
 audioStreamList = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 audioNameList = PoolStringArray( "1", "2", "3" )
 
-[node name="FollowTimer" type="Timer" parent="." index="6"]
+[node name="WalkThroughLineTimer" type="Timer" parent="." index="6"]
 one_shot = true
