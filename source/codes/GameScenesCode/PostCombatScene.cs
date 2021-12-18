@@ -1,12 +1,16 @@
 using Godot;
 using System;
 
-public class PostCombatScene : MyControl
+public class PostCombatScene : BaseTransition
 {
     [Export]
     private NodePath animationNodePath;
     [Export]
     private NodePath labelNodePath;
+    [Export]
+    private NodePath minorTransitionNodePath;
+    [Export]
+    private NodePath majorTransitionNodePath;
     [Export]
     private NodePath invocationTextureNodePath;
 
@@ -28,17 +32,24 @@ public class PostCombatScene : MyControl
 
     public void PlayMinorTransitionAnimation()
     {
-        GetNode<Control>("MinorTransition").Visible = true;
-        GetNode<AnimationPlayer>(animationNodePath).Play("show");
+        GetNode<Control>(minorTransitionNodePath).Visible = true;
+        GetNode<MinorTransition>(minorTransitionNodePath).Play();
     }
 
 
-    public void SetText(String text)
+    public override void SetMinorText(String minorText)
     {
-        GetNode<Label>(labelNodePath).Text = text;
+        GetNode<MinorTransition>(minorTransitionNodePath).SetMinorText(minorText);
     }
 
-    public void SetTexture(Texture texture)
+    public override void SetMajorText(String majorText)
+    {
+        majorText = majorText.Replace(".", "\n");
+        GetNode<Label>(majorTransitionNodePath).Text = majorText;
+    }
+
+
+    public override void SetTexture(Texture texture)
     {
         GetNode<TextureRect>(invocationTextureNodePath).Texture = texture;
     }

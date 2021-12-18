@@ -9,6 +9,10 @@ public class MasterGame : MyControl
     [Export]
     NodePath playerInfoPath;
     [Export]
+    NodePath backGroundPath;
+    [Export]
+    NodePath musicPlayerPath;
+    [Export]
     PackedScene playerPackedScene;
 
     [Export]
@@ -54,6 +58,12 @@ public class MasterGame : MyControl
         if (Input.IsActionJustReleased("R") && !GetNode<Game>(gamePath).gameContinue)
         {
             ConfigPlayerTryAgain();
+        }
+
+        if (Input.IsActionJustReleased("0"))
+        {
+            playerWin = true;
+            EmitSignal(nameof(scene_end));
         }
     }
 
@@ -156,6 +166,16 @@ public class MasterGame : MyControl
     public void SetInvocationsList(PackedScene[] invocationsList)
     {
         this.playerInvocations = invocationsList;
+    }
+
+    public void SetBackgroundTexture(Texture texture)
+    {
+        GetNode<TextureRect>(backGroundPath).Texture = texture;
+    }
+
+    public void SetMusicStream(AudioStream stream)
+    {
+        GetNode<AudioStreamPlayer>(musicPlayerPath).Stream = stream;
     }
 
 

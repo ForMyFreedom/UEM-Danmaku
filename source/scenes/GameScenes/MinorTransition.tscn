@@ -1,0 +1,115 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://source/codes/AudioCodes/MultipleStreamPlayer.cs" type="Script" id=2]
+[ext_resource path="res://assets/sfx/keyboard/12.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/keyboard/10.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/keyboard/4.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/keyboard/8.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/keyboard/11.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sfx/keyboard/2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sfx/keyboard/6.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sfx/keyboard/9.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/keyboard/1.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sfx/keyboard/7.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sfx/keyboard/13.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/keyboard/3.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sfx/keyboard/5.wav" type="AudioStream" id=15]
+[ext_resource path="res://source/codes/GameScenesCode/MinorTransition.cs" type="Script" id=16]
+
+[sub_resource type="Animation" id=1]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 100, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "QuitScene"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+extra_spacing_char = 7
+font_data = ExtResource( 1 )
+
+[node name="MinorTransition" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+autoPlay = true
+text = "BLANK"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 9.93411e-08, 9.93411e-08, 9.93411e-08, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+anims/show = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "A nos flenin nin flenin"
+valign = 1
+percent_visible = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlickSFX" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 2 )
+audioStreamList = [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 13 ) ]
+audioNameList = PoolStringArray( "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" )

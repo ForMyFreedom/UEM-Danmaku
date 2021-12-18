@@ -3,8 +3,8 @@
 [ext_resource path="res://source/codes/CombatCodes/Game.cs" type="Script" id=1]
 [ext_resource path="res://source/scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://source/scenes/Enemys/LowNet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/TechBG.png" type="Texture" id=4]
-[ext_resource path="res://assets/textures/background.png" type="Texture" id=5]
+[ext_resource path="res://assets/game_gui/TechBG.png" type="Texture" id=4]
+[ext_resource path="res://source/codes/AudioCodes/ContinuosAudioPlayer.cs" type="Script" id=5]
 [ext_resource path="res://assets/fonts/dpcomic.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://source/codes/AudioCodes/MultipleStreamPlayer.cs" type="Script" id=7]
 [ext_resource path="res://assets/sfx/enemy_death.wav" type="AudioStream" id=8]
@@ -123,6 +123,8 @@ __meta__ = {
 }
 gamePath = NodePath("V-Box/GameMargin/Game")
 playerInfoPath = NodePath("V-Box/PlayerInfo")
+backGroundPath = NodePath("V-Box/GameMargin/Game/BackGround")
+musicPlayerPath = NodePath("MusicPlayer")
 playerPackedScene = ExtResource( 2 )
 gameType = 1
 
@@ -162,10 +164,8 @@ pointsCounterPacked = ExtResource( 24 )
 victoryScreenNodePath = NodePath("CanvasLayer/VictoryScreen")
 
 [node name="BackGround" type="TextureRect" parent="V-Box/GameMargin/Game"]
-modulate = Color( 0.137255, 0.768627, 0.25098, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
 expand = true
 stretch_mode = 2
 __meta__ = {
@@ -381,6 +381,10 @@ __meta__ = {
 script = ExtResource( 7 )
 audioStreamList = [ ExtResource( 23 ) ]
 audioNameList = PoolStringArray( "fuse_crack" )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fuse_crack = SubResource( 4 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://source/codes/AllGame.cs" type="Script" id=1]
 [ext_resource path="res://source/codes/GameScenesLoader/ScenesLoader.cs" type="Script" id=2]
@@ -31,6 +31,16 @@
 [ext_resource path="res://source/scenes/Enemys/LowNet.tscn" type="PackedScene" id=29]
 [ext_resource path="res://source/scenes/Invocations/Elvio.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/invocations/Elvio.png" type="Texture" id=31]
+[ext_resource path="res://source/scenes/GameScenes/MinorTransition.tscn" type="PackedScene" id=32]
+[ext_resource path="res://source/scenes/Enemys/ExaustiveWork.tscn" type="PackedScene" id=33]
+[ext_resource path="res://assets/invocations/demon.png" type="Texture" id=34]
+[ext_resource path="res://source/scenes/Invocations/Rui.tscn" type="PackedScene" id=35]
+[ext_resource path="res://assets/textures/background.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/vector.png" type="Texture" id=37]
+[ext_resource path="res://assets/musics/Dorama.wav" type="AudioStream" id=38]
+[ext_resource path="res://assets/musics/NotJustBeyond.wav" type="AudioStream" id=39]
+[ext_resource path="res://assets/musics/FragileDoor.wav" type="AudioStream" id=40]
+[ext_resource path="res://assets/musics/Jupiter.wav" type="AudioStream" id=41]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -155,13 +165,16 @@ script = ExtResource( 5 )
 originScene = ExtResource( 6 )
 enemyList = [ ExtResource( 29 ) ]
 invocationList = [  ]
+backgroundTexture = ExtResource( 36 )
+musicStream = ExtResource( 40 )
 
 [node name="PostCombat1" type="Node" parent="ScenesLoader"]
 script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
 minorTransitionScene = ExtResource( 28 )
-transitionText = "Sla menor"
+majorText = "Elvio, Guerreiro da Resistencia.Destrua seus inimigos com sua resistividade eletrica.Precione Z para Invocar"
+minorText = "vai te fude 1"
 newPowerTexture = ExtResource( 31 )
 
 [node name="Combat2" type="Node" parent="ScenesLoader"]
@@ -170,19 +183,60 @@ originScene = ExtResource( 6 )
 gameType = 1
 enemyList = [ ExtResource( 29 ) ]
 invocationList = [ ExtResource( 30 ) ]
+backgroundTexture = ExtResource( 36 )
+musicStream = ExtResource( 38 )
 
 [node name="PostCombat2" type="Node" parent="ScenesLoader"]
 script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
-minorTransitionScene = ExtResource( 28 )
-transitionText = "MUITO LEGAL"
+minorTransitionScene = ExtResource( 32 )
+minorText = "vai te fude 2"
 
 [node name="Transition2" type="Node" parent="ScenesLoader"]
 script = ExtResource( 3 )
 originScene = SubResource( 5 )
 majorText = "Mundo 2"
 minorText = "Dimensao de Forca"
+
+[node name="Combat3" type="Node" parent="ScenesLoader"]
+script = ExtResource( 5 )
+originScene = ExtResource( 6 )
+enemyList = [ ExtResource( 29 ), ExtResource( 33 ) ]
+invocationList = [ ExtResource( 30 ) ]
+backgroundTexture = ExtResource( 37 )
+musicStream = ExtResource( 41 )
+
+[node name="PostCombat3" type="Node" parent="ScenesLoader"]
+script = ExtResource( 7 )
+originScene = ExtResource( 9 )
+failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 28 )
+majorText = "Rui, Lanceiro Dimensional.Ataque em dois estados: Definicao->Liberacao.Precione X para Invocar-Ativar"
+minorText = "vai te fude 3"
+newPowerTexture = ExtResource( 34 )
+
+[node name="Combat4" type="Node" parent="ScenesLoader"]
+script = ExtResource( 5 )
+originScene = ExtResource( 6 )
+gameType = 1
+enemyList = [ ExtResource( 29 ), ExtResource( 33 ) ]
+invocationList = [ ExtResource( 30 ), ExtResource( 35 ) ]
+backgroundTexture = ExtResource( 37 )
+musicStream = ExtResource( 39 )
+
+[node name="PostCombat4" type="Node" parent="ScenesLoader"]
+script = ExtResource( 7 )
+originScene = ExtResource( 9 )
+failureScene = ExtResource( 8 )
+minorTransitionScene = ExtResource( 32 )
+minorText = "vai te fude 4"
+
+[node name="Transition3" type="Node" parent="ScenesLoader"]
+script = ExtResource( 3 )
+originScene = SubResource( 4 )
+majorText = "Mundo 3"
+minorText = "Cumming Soon kkj"
 
 [node name="CurrentScene" type="Control" parent="."]
 anchor_right = 1.0

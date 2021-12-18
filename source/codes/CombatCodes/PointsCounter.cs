@@ -25,7 +25,7 @@ public class PointsCounter : AbstractCounter
 
     public override void ShrinkPontuation()
     {
-        points -= 5;
+        points -= 3;
         ActualizeLabel();
     }
 

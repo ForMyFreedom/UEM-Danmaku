@@ -8,7 +8,9 @@ public class GameScenePostCombat : MyGameScene
     [Export]
     private PackedScene minorTransitionScene;
     [Export]
-    private String transitionText;
+    private String majorText;
+    [Export]
+    private String minorText;
     [Export]
     private Texture newPowerTexture;
 
@@ -17,8 +19,9 @@ public class GameScenePostCombat : MyGameScene
         if (dataCross.GetDataLine<bool>("win") == true)
         {
             myScene = minorTransitionScene.Instance<MyControl>();
-            PostCombatScene transition = (PostCombatScene) myScene;
-            transition.SetText(transitionText);
+            BaseTransition transition = (BaseTransition) myScene;
+            transition.SetMajorText(majorText);
+            transition.SetMinorText(minorText);
             transition.SetTexture(newPowerTexture);
         }
         else

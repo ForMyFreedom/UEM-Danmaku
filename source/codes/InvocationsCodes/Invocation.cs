@@ -13,12 +13,12 @@ public abstract class Invocation : Node2D
     protected int actionIndex = 0;
     protected Random random = new Random();
 
-
     public override void _Ready()
     {
         RotationDegrees = random.Next(0, 360);
         Visible = true;
 
+        GetNode<MultipleStreamPlayer>("AudioPlayer").PlayAudioByIndex(actionIndex);
         GetNode<Area2D>("Area").Connect("area_entered", this, "OnAreaEntered");
         GetNode<AnimationPlayer>("Animation").Connect("animation_finished", this, "OnAnimationEnd");
         GetNode<AnimationPlayer>("Animation").Play("spawn");
@@ -59,6 +59,8 @@ public abstract class Invocation : Node2D
 
     public int GetNextIndex(int index)
     {
+        GetNode<MultipleStreamPlayer>("AudioPlayer").PlayAudioByIndex(actionIndex);
+
         actionIndex = index+1;
 
         if (actionIndex > actionsOrder.Count - 1)

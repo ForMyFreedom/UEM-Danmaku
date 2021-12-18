@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public class Transition : MyControl
+public class Transition : BaseTransition
 {
     [Export]
     NodePath majorTextNodePath;
@@ -20,16 +20,17 @@ public class Transition : MyControl
 
     
 
-    public void SetMajorText(String text)
+    public override void SetMajorText(String text)
     {
         GetNode<Label>(majorTextNodePath).Text = text;
     }
 
-    public void SetMinorText(String text)
+    public override void SetMinorText(String text)
     {
         GetNode<Label>(minorTextNodePath).Text = text;
     }
 
+    public override void SetTexture(Texture texture) { }
 
 
     private void _OnAnimationFinished(String aniName)

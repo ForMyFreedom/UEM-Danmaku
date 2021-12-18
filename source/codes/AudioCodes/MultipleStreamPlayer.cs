@@ -16,6 +16,12 @@ public class MultipleStreamPlayer : MyAudioStreamPlayer
         if (Stream!=null) Play();
     }
 
+    public void PlayAudioByIndex(int id)
+    {
+        Stream = audioStreamList[id];
+        if (Stream != null) Play();
+    }
+
 
     private int SearchIndexByName(String searchName)
     {

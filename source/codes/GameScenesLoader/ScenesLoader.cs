@@ -22,7 +22,7 @@ public class ScenesLoader : Node
     {
         if (!SceneIndexIsLimiar()) GetNode(currentSceneNodePath).GetChild(0).QueueFree();
         PassDataCrossToGlobalData(dataCross);
-        GetChild<MyGameScene>(sceneIndex).Load(ToAbsolute(currentSceneNodePath), dataCross);
+        TryLoadNewScene(dataCross);
         sceneIndex++;
     }
 
@@ -32,10 +32,23 @@ public class ScenesLoader : Node
     }
 
 
+    private void TryLoadNewScene(ScenesDataCross dataCross)
+    {
+        try
+        {
+            GetChild<MyGameScene>(sceneIndex).Load(ToAbsolute(currentSceneNodePath), dataCross);
+        }
+        catch (Exception)
+        {
+            _Ready();
+        }
+    }
+
+
 
     private bool SceneIndexIsLimiar()
     {
-        return sceneIndex == 0 || sceneIndex == GetChildCount()-1;
+        return sceneIndex == 0;
     }
 
 

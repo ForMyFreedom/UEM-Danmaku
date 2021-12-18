@@ -12,6 +12,7 @@ public class FailureScene : MyControl
         }
     }
 
+
     protected override ScenesDataCross GetDataCrossType()
     {
         return new BlankDataCross();
