@@ -79,7 +79,7 @@ margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "A Jornada do Burro!"
+text = "BCC: A Jornada!"
 align = 1
 valign = 1
 

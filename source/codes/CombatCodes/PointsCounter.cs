@@ -9,7 +9,7 @@ public class PointsCounter : AbstractCounter
     public override void StartUp(Game game)
     {
         game.Connect("enemy_died", this, "_OnEnemyKilled");
-        maxPoints = 30; //@
+        maxPoints = 15; //@
     }
 
     public override void _Ready()

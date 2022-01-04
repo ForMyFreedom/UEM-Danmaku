@@ -71,7 +71,7 @@ __meta__ = {
 position = Vector2( 598.684, 323.396 )
 scale = Vector2( 2.41685, 1.31128 )
 frames = SubResource( 1 )
-frame = 15
+frame = 20
 playing = true
 
 [node name="Label" type="Label" parent="."]
@@ -79,7 +79,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "YOU LOSE...
-DUMB BITCH!"
+TRY AGAIN!"
 align = 1
 valign = 1
 __meta__ = {

@@ -174,7 +174,7 @@ originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
 minorTransitionScene = ExtResource( 28 )
 majorText = "Elvio, Guerreiro da Resistencia.Destrua seus inimigos com sua resistividade eletrica.Precione Z para Invocar"
-minorText = "vai te fude 1"
+minorText = "'Quem não cola, não sai da escola'"
 newPowerTexture = ExtResource( 31 )
 
 [node name="Combat2" type="Node" parent="ScenesLoader"]
@@ -191,7 +191,7 @@ script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
 minorTransitionScene = ExtResource( 32 )
-minorText = "vai te fude 2"
+minorText = "'Se tu pega DP, cabo pro se'"
 
 [node name="Transition2" type="Node" parent="ScenesLoader"]
 script = ExtResource( 3 )
@@ -213,7 +213,7 @@ originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
 minorTransitionScene = ExtResource( 28 )
 majorText = "Rui, Lanceiro Dimensional.Ataque em dois estados: Definicao->Liberacao.Precione X para Invocar-Ativar"
-minorText = "vai te fude 3"
+minorText = "'Derivar é fácil, quero ver as primitiva'"
 newPowerTexture = ExtResource( 34 )
 
 [node name="Combat4" type="Node" parent="ScenesLoader"]
@@ -230,7 +230,7 @@ script = ExtResource( 7 )
 originScene = ExtResource( 9 )
 failureScene = ExtResource( 8 )
 minorTransitionScene = ExtResource( 32 )
-minorText = "vai te fude 4"
+minorText = "'O que diabos é um TCC?'"
 
 [node name="Transition3" type="Node" parent="ScenesLoader"]
 script = ExtResource( 3 )
