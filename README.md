@@ -9,5 +9,9 @@ No, just kidding, this 'game' is about the jorney of an regular _BCC Student_ (K
 ## Controls 
 Just the Arrows to movement and the Z and X to use the two invocations of this alpha (You start with nothing, then, good lucky to dodge!)
 
+When you die during combat, you can press 'R' to restart.
+
+Evertime you ended a scene (Like winning/lose a combat or adquiring a new invocation), press 'Enter' to continue.
+
 ## To Play
 [See also my game on itch.io!](https://formyfreedom.itch.io/danmaku-uem)
