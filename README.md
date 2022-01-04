@@ -14,6 +14,8 @@ Just the Arrows to movement and the Z and X to use the two invocations of this a
 
 When you die during combat, you can press 'R' to restart.
 
+In a Time Fase, you need to survive until the time reach zero. In a Points Fase, you need to get 15 Points to win
+
 Evertime you ended a scene (Like winning/lose a combat or adquiring a new invocation), press 'Enter' to continue.
 
 ## To Play
