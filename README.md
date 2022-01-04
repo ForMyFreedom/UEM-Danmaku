@@ -1,6 +1,9 @@
 # UEM-Danmaku
 A test game to know more about the Godot Mono Engine, using references of my college, UEM,  to make a game 'Danmaku-like' (I know well that regular Danmaku isn't this way... But just belive that is!)
 
+# Warning
+Before you start reading, is extremely important to know that this project is no more than just a joke. Don't took anything here seriously. Even close this repos if you didn't like my meme-aprrouch of creation. I'am really sorry if this the case, but this repos is no more than my first test on github, then, why not make some stupid laugths?!
+
 ## wtf is this? 
 You think i know? Pff
 
